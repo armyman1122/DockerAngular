@@ -39,6 +39,20 @@ module.exports = function (config) {
         flags: ['--no-sandbox']
       }
     },
+    mochaReporter: {
+      colors: {
+        success: 'blue',
+        info: 'bgGreen',
+        warning: 'cyan',
+        error: 'bgRed'
+      },
+      symbols: {
+        success: '+',
+        info: '#',
+        warning: '!',
+        error: 'x'
+      }
+    },
     singleRun: true
   });
 };

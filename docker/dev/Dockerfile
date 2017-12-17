@@ -1,4 +1,9 @@
+# Based on https://github.com/eirslett/chrome-karma-docker and
+# https://hackernoon.com/running-karma-tests-with-headless-chrome-inside-docker-ae4aceb06ed3
+
 FROM node:8.2.1
+
+RUN apt-get update && apt-get install locales
 
 # OPTIONAL: Install dumb-init (Very handy for easier signal handling of SIGINT/SIGTERM/SIGKILL etc.)
 RUN wget https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64.deb
@@ -12,8 +17,7 @@ RUN apt-get update && apt-get install -y google-chrome-stable
 
 WORKDIR /opt/app
 
+# Adding project source files to working directory
 ADD . /opt/app/
 RUN npm install &&\
-    ls -l &&\
-    pwd &&\
     npm test
